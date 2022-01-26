@@ -15,9 +15,14 @@ namespace Assets.Core.AI.Behaviors
     {
         public List<Weapon> weapons;
         public bool shakeCamera;
-
+        
         public override TaskStatus OnUpdate()
         {
+            if (weapons.Count <= 0)
+            {
+                return TaskStatus.Success;
+            }
+
             foreach (var weapon in weapons)
             {
                 var projectile = UnityEngine.Object.Instantiate(weapon.projectilePrefab,
