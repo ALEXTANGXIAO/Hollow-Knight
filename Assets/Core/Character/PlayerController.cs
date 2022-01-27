@@ -257,9 +257,10 @@ namespace Core.Character
                 if (vertical > snapThreshold) vertical = 1;
                 else if (vertical < -snapThreshold) vertical = -1;
 
-                isJumping = isJumping || CrossPlatformInputManager.GetButton("Jump");
-                isDashing = CrossPlatformInputManager.GetButton("Dash");
-
+                isJumping = isJumping || CrossPlatformInputManager.GetButtonDown("Jump");
+                isDashing = CrossPlatformInputManager.GetButtonDown("Dash");
+                Debug.LogError("IsJumping:"+isJumping);
+                Debug.LogError("isDashing:" + isDashing);
             }
         }
 
@@ -338,9 +339,9 @@ namespace Core.Character
                 
                 isAttackButtonDown = Input.GetMouseButton(0);
 #else
-                isAttackButtonDown = CrossPlatformInputManager.GetButton("Attack");
+                isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
 #endif
-                //isAttackButtonDown = CrossPlatformInputManager.GetButton("Attack");
+                //isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
                 if (isAttackButtonDown && !wasAttackButtonDown && Controllable)
                 {
                     if (!wasAttacking)
