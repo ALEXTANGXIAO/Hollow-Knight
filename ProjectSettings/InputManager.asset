@@ -42,7 +42,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: x
+    positiveButton: j
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -57,9 +57,9 @@ InputManager:
     m_Name: Dash
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: c
-    altNegativeButton: 
+    negativeButton: left shift
+    positiveButton: left shift
+    altNegativeButton: left shift
     altPositiveButton: 
     gravity: 1000
     dead: 0.001
@@ -89,9 +89,9 @@ InputManager:
     m_Name: Jump
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: z
-    positiveButton: 
-    altNegativeButton: 
+    negativeButton: space
+    positiveButton: space
+    altNegativeButton: space
     altPositiveButton: 
     gravity: 1000
     dead: 0.001

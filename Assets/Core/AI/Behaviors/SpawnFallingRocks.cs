@@ -32,7 +32,7 @@ namespace Assets.Core.AI.Behaviors
 
         private void SpawnRock()
         {
-            var randomX = UnityEngine.Random.Range(spawnAreaCollider.bounds.max.x, spawnAreaCollider.bounds.max.x);
+            var randomX = UnityEngine.Random.Range(spawnAreaCollider.bounds.min.x, spawnAreaCollider.bounds.max.x);
             var rock = UnityEngine.Object.Instantiate(rockPrefab, new Vector3(randomX, spawnAreaCollider.bounds.min.y),
                 Quaternion.identity);
             rock.SetForce(Vector2.zero);

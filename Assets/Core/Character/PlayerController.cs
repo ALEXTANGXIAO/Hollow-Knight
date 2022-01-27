@@ -3,6 +3,7 @@ using System.Collections;
 using Core.UI;
 using Core.Util;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 namespace Core.Character
 {
@@ -242,9 +243,9 @@ namespace Core.Character
             {
                 // Then overwrite with keyboard input (if present)
                 horizontal = horizontal == 0
-                    ? Input.GetAxis("Horizontal")
+                    ? CrossPlatformInputManager.GetAxis("Horizontal")
                     : horizontal;
-                vertical = vertical == 0 ? Input.GetAxisRaw("Vertical") : vertical;
+                vertical = vertical == 0 ? CrossPlatformInputManager.GetAxisRaw("Vertical") : vertical;
 
                 float snapThreshold = 1;
                 if (useGamepad)
@@ -256,8 +257,8 @@ namespace Core.Character
                 if (vertical > snapThreshold) vertical = 1;
                 else if (vertical < -snapThreshold) vertical = -1;
 
-                isJumping = isJumping || Input.GetButton("Jump");
-                isDashing = Input.GetButton("Dash");
+                isJumping = isJumping || CrossPlatformInputManager.GetButton("Jump");
+                isDashing = CrossPlatformInputManager.GetButton("Dash");
 
             }
         }
@@ -333,7 +334,13 @@ namespace Core.Character
         {
             if (attackController != null)
             {
-                isAttackButtonDown = Input.GetButton("Attack");
+#if UNITY_EDITOR||PLATFORM_STANDALONE_WIN
+                
+                isAttackButtonDown = Input.GetMouseButton(0);
+#else
+                isAttackButtonDown = CrossPlatformInputManager.GetButton("Attack");
+#endif
+                //isAttackButtonDown = CrossPlatformInputManager.GetButton("Attack");
                 if (isAttackButtonDown && !wasAttackButtonDown && Controllable)
                 {
                     if (!wasAttacking)
@@ -452,7 +459,8 @@ namespace Core.Character
 
             hitProtectionTimer = hitProtectionDuration;
             Instantiate(hurtFlashObject, transform.position, Quaternion.identity);
-            GuiManager.Instance.FadeHurtVignette(vignetteIntensity);
+            //GuiManager.Instance.FadeHurtVignette(vignetteIntensity);
+            EventCenter.Instance.EventTrigger("Hurt");
             GameManager.Instance.FreezeTime(0.02f);
 
             // Recoil

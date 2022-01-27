@@ -2,6 +2,7 @@
 using Core.Combat;
 using Core.Util;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 namespace Core.Character
 {
@@ -38,8 +39,8 @@ namespace Core.Character
             {
                 // Add controller support with Right analog stick
                 Vector3 attackDirection = new Vector3(
-                    Input.GetAxisRaw("Horizontal"),
-                    Input.GetAxisRaw("Vertical"), 0);
+                    CrossPlatformInputManager.GetAxisRaw("Horizontal"),
+                    CrossPlatformInputManager.GetAxisRaw("Vertical"), 0);
 
                 attackDirection = attackDirection.normalized;
 

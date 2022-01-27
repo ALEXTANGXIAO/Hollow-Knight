@@ -9,33 +9,27 @@ using Core.Combat;
 using UnityEngine;
 using TaskStatus = BehaviorDesigner.Runtime.Tasks.TaskStatus;
 
-namespace Assets.Core.AI.Behaviors
+namespace Assets.Core.AI
 {
-    class Shot:EnemyAction
+    public class Shot:EnemyAction
     {
-        public List<Weapon> weapons;
         public bool shakeCamera;
-        
+
+        public Weapon weapon;
+
         public override TaskStatus OnUpdate()
         {
-            if (weapons.Count <= 0)
+
+            var projectile = UnityEngine.Object.Instantiate(weapon.projectilePrefab,
+                weapon.weaponTransform.position, Quaternion.identity);
+            projectile.Shooter = gameObject;
+
+            var force = new Vector2(weapon.horizontalForce * transform.localScale.x,weapon.verticalForce);
+            projectile.SetForce(force);
+
+            if (shakeCamera)
             {
-                return TaskStatus.Success;
-            }
-
-            foreach (var weapon in weapons)
-            {
-                var projectile = UnityEngine.Object.Instantiate(weapon.projectilePrefab,
-                    weapon.weaponTransform.position, Quaternion.identity);
-                projectile.Shooter = gameObject;
-
-                var force = new Vector2(weapon.horizontalForce * transform.localScale.x,weapon.verticalForce);
-                projectile.SetForce(force);
-
-                if (shakeCamera)
-                {
-                    CameraController.Instance.ShakeCamera(0.5f);   
-                }
+                CameraController.Instance.ShakeCamera(0.5f);   
             }
 
             return TaskStatus.Success;
