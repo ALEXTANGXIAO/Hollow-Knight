@@ -259,8 +259,6 @@ namespace Core.Character
 
                 isJumping = isJumping || CrossPlatformInputManager.GetButtonDown("Jump");
                 isDashing = CrossPlatformInputManager.GetButtonDown("Dash");
-                Debug.LogError("IsJumping:"+isJumping);
-                Debug.LogError("isDashing:" + isDashing);
             }
         }
 
@@ -337,15 +335,12 @@ namespace Core.Character
             {
 #if UNITY_EDITOR||PLATFORM_STANDALONE_WIN
                 
-                //isAttackButtonDown = Input.GetMouseButton(0);
+                isAttackButtonDown = Input.GetMouseButton(0);
 #else
                 isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
 #endif
-                isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
-                if (isAttackButtonDown)
-                {
-                    Debug.Log("isAttackButtonDown");
-                }
+                //isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
+
                 if (isAttackButtonDown && !wasAttackButtonDown && Controllable)
                 {
                     if (!wasAttacking)

@@ -130,7 +130,6 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		public static void SetButtonDown(string name)
 		{
-			Debug.Log("SetButtonDown:  "+name);
 			activeInput.SetButtonDown(name);
 		}
 
@@ -300,8 +299,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			{
 				get
 				{
-					Debug.Log("name:"+name+"   Frame:"+(m_LastPressedFrame - Time.frameCount));
-					return m_LastPressedFrame - Time.frameCount >= -30;
+                    return m_LastPressedFrame - Time.frameCount >= -30;
 				}
 			}
 
