@@ -337,11 +337,15 @@ namespace Core.Character
             {
 #if UNITY_EDITOR||PLATFORM_STANDALONE_WIN
                 
-                isAttackButtonDown = Input.GetMouseButton(0);
+                //isAttackButtonDown = Input.GetMouseButton(0);
 #else
                 isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
 #endif
-                //isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
+                isAttackButtonDown = CrossPlatformInputManager.GetButtonDown("Attack");
+                if (isAttackButtonDown)
+                {
+                    Debug.Log("isAttackButtonDown");
+                }
                 if (isAttackButtonDown && !wasAttackButtonDown && Controllable)
                 {
                     if (!wasAttacking)
@@ -508,7 +512,9 @@ namespace Core.Character
 
             //SoundManager.Instance.PlaySound(deathSound, 1, audioSource);
             isDying = true;
-            animator.SetBool("IsDying", true);
+            //animator.SetBool("IsDie", true);
+            //animator.SetTrigger("Die");
+            //Controllable = false;
 
             OnDeath?.Invoke();
         }

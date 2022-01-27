@@ -91,6 +91,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
         {
             if (m_VirtualButtons.ContainsKey(name))
             {
+                Debug.Log(name+ "  m_VirtualButtons[name].GetButtonDown: "+ m_VirtualButtons[name].GetButtonDown);
                 return m_VirtualButtons[name].GetButtonDown;
             }
 

@@ -7,7 +7,8 @@ namespace Core.Combat
     {
         public int health = 10;
 
-        public int CurrentHealth { get; set; }
+        public int m_currentHp;
+        public int CurrentHealth { get => m_currentHp; set {m_currentHp = value; } }
         public bool Invincible { get; set; }
 
         public event Action OnDestroyed;
