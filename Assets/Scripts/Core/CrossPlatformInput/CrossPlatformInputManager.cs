@@ -299,7 +299,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			{
 				get
 				{
-                    return m_LastPressedFrame - Time.frameCount >= -30;
+                    return m_LastPressedFrame - Time.frameCount >= -15;
 				}
 			}
 
