@@ -413,6 +413,7 @@ MonoBehaviour:
   hideWhenDead: 0
   hitMaterial: {fileID: 2100000, guid: d28059583e1a40249ad8daa3586d8028, type: 2}
   health: 100
+  m_currentHp: 0
 --- !u!114 &312944870
 MonoBehaviour:
   m_ObjectHideFlags: 0
